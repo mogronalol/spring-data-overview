@@ -55,4 +55,15 @@ public class Flight {
     public void setNowScheduledAt(ZonedDateTime nowScheduledAt) {
         this.nowScheduledAt = nowScheduledAt;
     }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id +
+                ", origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", originallyScheduledAt=" + originallyScheduledAt +
+                ", nowScheduledAt=" + nowScheduledAt +
+                '}';
+    }
 }
