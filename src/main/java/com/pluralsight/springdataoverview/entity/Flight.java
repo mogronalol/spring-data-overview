@@ -1,25 +1,21 @@
 package com.pluralsight.springdataoverview.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+
 import java.time.LocalDateTime;
 
-@Entity
 public class Flight {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    private String id;
     private String origin;
     private String destination;
     private LocalDateTime scheduledAt;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
