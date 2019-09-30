@@ -3,13 +3,14 @@ package com.pluralsight.springdataoverview;
 import com.pluralsight.springdataoverview.entity.Flight;
 import com.pluralsight.springdataoverview.repository.FlightRepository;
 import org.assertj.core.util.Lists;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,6 +21,11 @@ public class DerivedQueryTests {
 
 	@Autowired
 	private FlightRepository flightRepository;
+
+	@Before
+	public void setUp(){
+	    flightRepository.deleteAll();
+	}
 
 	@Test
 	public void shouldFindFlightsToLondon() {
@@ -97,7 +103,7 @@ public class DerivedQueryTests {
 		final Flight flight = new Flight();
 		flight.setOrigin(origin);
 		flight.setDestination(destination);
-		flight.setScheduledAt(ZonedDateTime.parse("2011-12-13T12:12:00Z"));
+		flight.setScheduledAt(LocalDateTime.parse("2011-12-13T12:12:00"));
 		return flight;
 	}
 

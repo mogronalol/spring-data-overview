@@ -2,6 +2,7 @@ package com.pluralsight.springdataoverview;
 
 import com.pluralsight.springdataoverview.entity.Flight;
 import com.pluralsight.springdataoverview.repository.FlightRepository;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,10 +27,15 @@ public class PagingAndSortingTests {
     @Autowired
     private FlightRepository flightRepository;
 
+    @Before
+    public void setUp(){
+        flightRepository.deleteAll();
+    }
+
     @Test
     public void shouldSortFlightsByDestination() {
         // Given
-        final ZonedDateTime now = ZonedDateTime.now();
+        final LocalDateTime now = LocalDateTime.now();
         final Flight spain = createFlight("Spain", now);
         final Flight london = createFlight("London", now);
         final Flight paris = createFlight("Paris", now);
@@ -49,7 +55,7 @@ public class PagingAndSortingTests {
     @Test
     public void shouldSortFlightsByScheduledAndThenName() {
         // Given
-        final ZonedDateTime now = ZonedDateTime.now();
+        final LocalDateTime now = LocalDateTime.now();
         final Flight paris1 = createFlight("Paris", now);
         final Flight paris2 = createFlight("Paris", now.plusHours(2));
         final Flight paris3 = createFlight("Paris", now.minusHours(1));
@@ -84,7 +90,7 @@ public class PagingAndSortingTests {
     public void shouldPageResults() {
         // Given
         for (int i = 0; i < 50; i++) {
-            flightRepository.save(createFlight(String.valueOf(i), ZonedDateTime.now()));
+            flightRepository.save(createFlight(String.valueOf(i), LocalDateTime.now()));
         }
 
         // When
@@ -102,7 +108,7 @@ public class PagingAndSortingTests {
     public void shouldPageAndSortResults() {
         // Given
         for (int i = 0; i < 10; i++) {
-            flightRepository.save(createFlight(String.valueOf(i), ZonedDateTime.now()));
+            flightRepository.save(createFlight(String.valueOf(i), LocalDateTime.now()));
         }
 
         // When
@@ -120,13 +126,13 @@ public class PagingAndSortingTests {
     public void shouldPageAndSortADerivedQuery() {
         // Given
         for (int i = 0; i < 10; i++) {
-            final Flight flight = createFlight(String.valueOf(i), ZonedDateTime.now());
+            final Flight flight = createFlight(String.valueOf(i), LocalDateTime.now());
             flight.setOrigin("Paris");
             flightRepository.save(flight);
         }
 
         for (int i = 0; i < 10; i++) {
-            final Flight flight = createFlight(String.valueOf(i), ZonedDateTime.now());
+            final Flight flight = createFlight(String.valueOf(i), LocalDateTime.now());
             flight.setOrigin("London");
             flightRepository.save(flight);
         }
@@ -143,7 +149,7 @@ public class PagingAndSortingTests {
     }
 
 
-    private Flight createFlight(final String destination, final ZonedDateTime scheduledAt) {
+    private Flight createFlight(final String destination, final LocalDateTime scheduledAt) {
         final Flight flight = new Flight();
         flight.setOrigin("London");
         flight.setDestination(destination);
