@@ -97,8 +97,7 @@ public class DerivedQueryTests {
 		final Flight flight = new Flight();
 		flight.setOrigin(origin);
 		flight.setDestination(destination);
-		flight.setOriginallyScheduledAt(ZonedDateTime.parse("2011-12-13T12:12:00Z"));
-		flight.setNowScheduledAt(ZonedDateTime.parse("2011-12-13T12:12:00Z"));
+		flight.setScheduledAt(ZonedDateTime.parse("2011-12-13T12:12:00Z"));
 		return flight;
 	}
 

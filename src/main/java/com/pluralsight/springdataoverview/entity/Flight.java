@@ -13,8 +13,7 @@ public class Flight {
     private Long id;
     private String origin;
     private String destination;
-    private ZonedDateTime originallyScheduledAt;
-    private ZonedDateTime nowScheduledAt;
+    private ZonedDateTime scheduledAt;
 
     public Long getId() {
         return id;
@@ -40,30 +39,11 @@ public class Flight {
         this.destination = destination;
     }
 
-    public ZonedDateTime getOriginallyScheduledAt() {
-        return originallyScheduledAt;
+    public ZonedDateTime getScheduledAt() {
+        return scheduledAt;
     }
 
-    public void setOriginallyScheduledAt(ZonedDateTime originallyScheduledAt) {
-        this.originallyScheduledAt = originallyScheduledAt;
-    }
-
-    public ZonedDateTime getNowScheduledAt() {
-        return nowScheduledAt;
-    }
-
-    public void setNowScheduledAt(ZonedDateTime nowScheduledAt) {
-        this.nowScheduledAt = nowScheduledAt;
-    }
-
-    @Override
-    public String toString() {
-        return "Flight{" +
-                "id=" + id +
-                ", origin='" + origin + '\'' +
-                ", destination='" + destination + '\'' +
-                ", originallyScheduledAt=" + originallyScheduledAt +
-                ", nowScheduledAt=" + nowScheduledAt +
-                '}';
+    public void setScheduledAt(ZonedDateTime scheduledAt) {
+        this.scheduledAt = scheduledAt;
     }
 }

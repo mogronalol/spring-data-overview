@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.ZonedDateTime;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,8 +25,7 @@ public class CrudTests {
 		final Flight flight = new Flight();
 		flight.setOrigin("London");
 		flight.setDestination("New York");
-		flight.setOriginallyScheduledAt(ZonedDateTime.parse("2011-12-13T12:12:00Z"));
-		flight.setNowScheduledAt(ZonedDateTime.parse("2011-12-13T12:12:00Z"));
+		flight.setScheduledAt(ZonedDateTime.parse("2011-12-13T12:12:00Z"));
 
 		flightRepository.save(flight);
 
